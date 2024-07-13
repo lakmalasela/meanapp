@@ -1,0 +1,33 @@
+<p>test works!</p>
+<!-- not allow the global js variables -->
+<div [class]="classStyle">Name is : {{name}}</div>
+
+<button (click)="onClick()">Click Here</button>
+
+<input #myText type="text">
+<input [(ngModel)] = "twoway" type="text">
+<div></div>
+
+<div>{{sayname}}</div>
+
+<div *ngIf="display; else elseblock">
+    This is the Code
+</div>
+
+<ng-template #elseblock>
+    <div>
+        HIIIIIIIIIIIII
+    </div>
+</ng-template>
+
+<button (click)="getValue(myText.value)">Send Value</button>
+<button (click)="fireEventEmit()">Send</button>
+
+
+<br>
+<div *ngFor="let student of students">
+    <h4>{{student.name}}</h4>
+</div>
+
+<h1>{{ParentData}}</h1>
+{{locationget}}

@@ -1,0 +1,83 @@
+{{ EmployeeModel | json }}
+<form #userForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      class="form-control"
+      #name="ngModel"
+      [ngClass]="{ 'invalid-input': name.invalid && (name.dirty || name.touched) }"
+      pattern="^[A-Z][a-z]*(\s[A-Z][a-z]*)*$"
+      id="name"
+      name="name"
+      [(ngModel)]="EmployeeModel.name"
+      required
+    />
+  </div>
+  
+  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-message">
+    <div *ngIf="name.errors?.['required']">Name is required</div>
+    <div *ngIf="name.errors?.['pattern']">Enter a valid Name</div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+    #email="ngModel"
+      type="email"
+      class="form-control"
+      id="email"
+      [ngClass]="{ 'invalid-input': email.invalid && (email.dirty || email.touched) }"
+      pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+      name="email"
+      [(ngModel)]="EmployeeModel.email"
+      required
+    />
+  </div>
+  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+    <div *ngIf="email.errors?.['required']">Email is required</div>
+    <div *ngIf="email.errors?.['pattern']">Enter a valid Email</div>
+  </div>
+  
+  <div class="form-group">
+    <label for="phone">Phone:</label>
+    <input
+      type="tel"
+      class="form-control"
+      id="phone"
+      name="phone"
+      [(ngModel)]="EmployeeModel.phone"
+      required
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="topic">Topic:</label>
+    <select
+      name="topic"
+      #topicModel="ngModel"
+      id="topic"
+      [(ngModel)]="EmployeeModel.topic"
+      [ngClass]="{ 'invalid-input': topicModel.invalid && (topicModel.dirty || topicModel.touched) }"
+      required
+    >
+      <option value="">Select the Topic</option>
+      <option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option>
+    </select>
+    <div *ngIf="topicModel.invalid && (topicModel.dirty || topicModel.touched)" class="error-message">
+      <div *ngIf="topicModel.errors?.['required']">Topic is required</div>
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<style>
+  .invalid-input {
+    border-color: red;
+  }
+
+  .error-message {
+    color: red;
+  }
+</style>
