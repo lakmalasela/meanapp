@@ -1,0 +1,58 @@
+<div class="login-container">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+    #email="ngModel"
+      type="email"
+      class="form-control"
+      id="email"
+      [ngClass]="{ 'invalid-input': email.invalid && (email.dirty || email.touched) }"
+      pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+      name="email"
+      [(ngModel)]="CredentialModel.email"
+      required
+    />
+  </div>
+  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+    <div *ngIf="email.errors?.['required']">Email is required</div>
+    <div *ngIf="email.errors?.['pattern']">Enter a valid Email</div>
+  </div>
+  
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      class="form-control"
+      #password="ngModel"
+      id="password"
+      name="password"
+      [(ngModel)]="CredentialModel.password"
+      required
+    />
+  </div>
+  <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+    <div *ngIf="password.errors?.['required']">Password is required</div>
+    <div *ngIf="password.errors?.['pattern']">Enter a valid Password</div>
+  </div>
+      
+      <button class="primary" color="primary" type="submit">Login</button>
+    </form>
+  </div>
+<style>
+    .login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+.invalid-input {
+    border-color: red;
+  }
+
+  .error-message {
+    color: red;
+  }
+</style>  

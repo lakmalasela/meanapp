@@ -18,11 +18,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const connectionURI = 'mongodb+srv://asela:TzJfLeUjVyBaclex@cluster0.9snvyq7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
-mongoose.connect(connectionURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}); //established the connection
+// mongoose.connect(connectionURI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }); 
+//established the connection
 
+
+
+mongoose.connect(connectionURI);
 //check the if have any error
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
